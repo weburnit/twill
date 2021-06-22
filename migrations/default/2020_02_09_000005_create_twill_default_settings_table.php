@@ -18,7 +18,7 @@ class CreateTwillDefaultSettingsTable extends Migration
 
         if (!Schema::hasTable($twillSettingsTable)) {
             Schema::create($twillSettingsTable, function (Blueprint $table) {
-                $table->{twillIncrementsMethod()}('id');
+                $table->{twillIncrementsMethod()}('id')->primary();
                 $table->timestamps();
                 $table->softDeletes();
                 $table->string('key')->nullable()->index();

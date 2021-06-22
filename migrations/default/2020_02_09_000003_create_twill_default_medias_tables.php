@@ -18,7 +18,7 @@ class CreateTwillDefaultMediasTables extends Migration
 
         if (!Schema::hasTable($twillMediasTable)) {
             Schema::create($twillMediasTable, function (Blueprint $table) {
-                $table->{twillIncrementsMethod()}('id');
+                $table->{twillIncrementsMethod()}('id')->primary();
                 $table->timestamps();
                 $table->softDeletes();
                 $table->text('uuid');
@@ -32,12 +32,12 @@ class CreateTwillDefaultMediasTables extends Migration
 
         if (!Schema::hasTable($twillMediablesTable)) {
             Schema::create($twillMediablesTable, function (Blueprint $table) use ($twillMediasTable) {
-                $table->{twillIncrementsMethod()}('id');
+                $table->{twillIncrementsMethod()}('id')->primary();
                 $table->timestamps();
                 $table->softDeletes();
-                $table->{twillIntegerMethod()}('mediable_id')->nullable()->unsigned();
+                $table->{twillIntegerMethod()}('mediable_id')->nullable();
                 $table->string('mediable_type')->nullable();
-                $table->{twillIntegerMethod()}('media_id')->unsigned();
+                $table->{twillIntegerMethod()}('media_id');
                 $table->integer('crop_x')->nullable();
                 $table->integer('crop_y')->nullable();
                 $table->integer('crop_w')->nullable();
